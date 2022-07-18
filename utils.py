@@ -17,7 +17,7 @@ def get_all(candidates):
         return candidates_list
 
 
-def get_candidate(candidate_id):
+def get_candidate_by_id(candidate_id):
     """которая вернет кандидата по pk"""
     candidates = load_candidates_from_json()
     for j in candidates:
@@ -38,9 +38,9 @@ def get_candidates_by_name(candidate_name):
         if candidate_name == g['name']:
             candidate_by_name = f"""<img src='({url})'> \n
                                 <pre> \n
-                                    {j['name']}\n
-                                    {j['position']}\n
-                                    {j['skills']}\n
+                                    {g['name']}\n
+                                    {g['position']}\n
+                                    {g['skills']}\n
                                     \n
                                 </pre>"""
             return candidate_by_name
