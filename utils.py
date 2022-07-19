@@ -21,7 +21,7 @@ def get_candidate_by_id(candidate_id):
     """которая вернет кандидата по pk"""
     candidates = load_candidates_from_json()
     for j in candidates:
-        if id == j['id']:
+        if candidate_id == j['id']:
             candidate_by_id = f"""<img src='({url})'> \n
                                 <pre> \n
                                     {j['name']}\n
@@ -30,6 +30,7 @@ def get_candidate_by_id(candidate_id):
                                     \n
                                 </pre>"""
             return candidate_by_id
+
 
 def get_candidates_by_name(candidate_name):
     """которая возвращает кандидатов по имени"""
