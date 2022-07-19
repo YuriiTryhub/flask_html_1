@@ -1,5 +1,6 @@
-from flask import Flask
-from utils import load_candidates_from_json, get_candidate_by_id, get_candidates_by_skill, url
+from flask import Flask, render_template
+
+from utils import load_candidates_from_json, get_candidates_by_skill, get_candidate_by_id
 
 app = Flask(__name__)
 
@@ -7,22 +8,13 @@ app = Flask(__name__)
 @app.route('/')
 def page_index():
     candidates = load_candidates_from_json()
-    candidate_info = ' '
-    for candidate in candidates:
-        candidate_info += f"""<img src='({url})'> \n
-                          <pre> \n
-                            {candidate['name']}\n
-                            {candidate['position']}\n
-                            {candidate['skills']}\n
-                            \n
-                          </pre>"""
-    return candidate_info
+    return render_template('list.html', candidates=candidates)
 
 
-@app.route('/candidates/<int:x>')
+@app.route('/candidates/<int:x>/')
 def profile(x):
-    id_candidate = get_candidate_by_id(x)
-    return id_candidate
+    candidates = get_candidate_by_id(x)
+    return render_template('card.html', candidates=candidates)
 
 
 @app.route('/skills/<x>')
